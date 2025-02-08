@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { color: #4CAF50; }
+        .todo { margin: 10px 0; padding: 10px; background-color: #f4f4f4; border-radius: 5px; }
+        .todo a { margin-left: 10px; text-decoration: none; }
+        .todo a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <a href="{% url 'todos:create_todo' %}">Create Todo</a>
+    <ul>
+        {% for todo in todos %}
+            <li class="todo">
+                <strong>{{ todo.title }}</strong> - {{ todo.due_date }}
+                <a href="{% url 'todos:todo_detail' todo.id %}">Detail</a> |
+                <a href="{% url 'todos:delete_todo' todo.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
